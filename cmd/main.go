@@ -1,27 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"net/http"
+)
 
 func main() {
-	fmt.Println("Start Golang")
-	A := []int{2,5,2,7,4}
-	fmt.Println(distAbsDiff(A))
+	http.HandleFunc("/", handler)
+	fmt.Println("Starting Server at port :3000")
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
-func distAbsDiff(A []int) int {
-	result := make(map[int]bool)
-	for i := 1; i < len(A); i++ {
-		diff := abs(A[i] - A[i - 1])
-		result[diff] = true
-	}
-
-	return len(result)
-}
-
-func abs(x int) int {
-	// fmt.Println(x)
-	if x < 0 {
-		return -x
-	}
-	return x
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Starting Server")
 }
