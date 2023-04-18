@@ -4,11 +4,17 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/megamsquare/go_setup/config"
 )
 
 func main() {
+	err := config.Set_env(".env")
+	if err != nil {
+		log.Println("env file load config error: ", err)
+	}
 	http.HandleFunc("/", handler)
-	fmt.Println("Starting Server at port :3000")
+	log.Println("Starting Server at port :3000")
 	log.Fatal(http.ListenAndServe(":3000", nil))
 }
 

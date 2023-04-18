@@ -39,7 +39,17 @@ func Set_env(f string) error {
 		if len(env) != 2 {
 			return errors.New("must be key-value pair")
 		}
-		log.Println(env)
+		key := env[0]
+		value := env[1]
+		value = strings.Trim(value, `"`)
+		_, ok := os.LookupEnv(key)
+		if ok {
+			continue
+		}
+		err := os.Setenv(key, value)
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
