@@ -14,6 +14,14 @@ func main() {
 	if err != nil {
 		log.Println("env file load config error: ", err)
 	}
+
+	dbConfig := database.Load_config()
+	db, err := database.Connect_db(dbConfig)
+	if err != nil {
+		log.Printf("Database error: %v", err)
+	}
+	defer db.Close()
+
 	http.HandleFunc("/", handler)
 	log.Println("Starting Server at port :3000")
 	log.Fatal(http.ListenAndServe(":3000", nil))
