@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/megamsquare/go_setup/config"
+	database "github.com/megamsquare/go_setup/db"
 )
 
 func main() {
