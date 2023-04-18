@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . .
 RUN go clean -modcache
 RUN go mod download
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd/main.golang
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./cmd/main.go
 
 # Final Stage
 FROM alpine:latest
