@@ -2,6 +2,7 @@ package queue
 
 import (
 	"fmt"
+	"log"
 
 	config "github.com/megamsquare/go_setup/pkg/env_config"
 	"github.com/streadway/amqp"
@@ -13,9 +14,7 @@ type RabbitMQ struct {
 }
 
 type RabbitMQConfig struct {
-	Username string `config:"RABBITMQ_USERNAME" default:"rabbitmq"`
-	Password string `config:"RABBITMQ_PASSWORD" default:"rabbitmq"`
-	Port int `config:"RABBITMQ_PORT" default:"5672"`
+	URI string `config:"AMQP_URI" default:"amqp://guest:guest@localhost:5672/"`
 }
 
 func Load_config() *RabbitMQConfig {
@@ -25,7 +24,7 @@ func Load_config() *RabbitMQConfig {
 }
 
 func Connect_rabbitMQ(conf *RabbitMQConfig) (*RabbitMQ, error) {
-	conn := fmt.Sprintf("")
+	conn := fmt.Sprintf(conf.URI)
 
 	rbmq, err := amqp.Dial(conn)
 	if err != nil {
@@ -47,10 +46,16 @@ func Connect_rabbitMQ(conf *RabbitMQConfig) (*RabbitMQ, error) {
 
 func (r *RabbitMQ) Close() {
 	if r.channel != nil {
-		
+		err := r.channel.Close()
+		if err != nil {
+			log.Printf("Error closing RabbitMQ channel: %v", err)
+		}
 	}
 
 	if r.conn != nil {
-
+		err := r.conn.Close()
+		if err != nil {
+			log.Printf("Error closing RabbitMQ connectio: %v", err)
+		}
 	}
 }
