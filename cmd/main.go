@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/megamsquare/go_setup/config"
-	database "github.com/megamsquare/go_setup/db"
+	"github.com/megamsquare/go_setup/pkg/env_config"
+	database "github.com/megamsquare/go_setup/pkg/db"
 )
 
 func main() {

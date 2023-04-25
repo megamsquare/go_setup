@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/megamsquare/go_setup/config"
+	"github.com/megamsquare/go_setup/pkg/env_config"
 )
 
 type Config struct {
