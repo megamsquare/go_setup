@@ -5,8 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/megamsquare/go_setup/pkg/env_config"
 	database "github.com/megamsquare/go_setup/pkg/db"
+	"github.com/megamsquare/go_setup/pkg/env_config"
+	"github.com/megamsquare/go_setup/pkg/queue"
 )
 
 func main() {
@@ -14,6 +15,13 @@ func main() {
 	if err != nil {
 		log.Println("env file load config error: ", err)
 	}
+
+	rmqConfig := queue.Load_config()
+	rabbitMQ, err := queue.Connect_rabbitMQ(rmqConfig)
+	if err != nil {
+		log.Printf("Error connectiong to RabbitMQ: %v", err)
+	}
+	defer rabbitMQ.Close()
 
 	dbConfig := database.Load_config()
 	db, err := database.Connect_db(dbConfig)
