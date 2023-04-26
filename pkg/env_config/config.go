@@ -25,7 +25,7 @@ func Load_with_prefix(prefix string, t interface{}) {
 func Set_env(f string) error {
 	file, err := os.Open(f)
 	if err != nil {
-		return nil
+		return err
 	}
 	defer file.Close()
 
