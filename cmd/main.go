@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // "log"
 // "net/http"
 
@@ -9,29 +7,43 @@ func main() {
 	// http.HandleFunc("/", handler)
 	// fmt.Println("Starting Server at port :3000")
 	// log.Fatal(http.ListenAndServe(":3000", nil))
-	nums1 := []int{4, 9, 5}
-	nums2 := []int{4, 1, 2, 1, 2}
+	// nums1 := []int{4, 9, 5}
+	// nums2 := []int{4, 1, 2, 1, 2}
+	// fmt.Println(intersect(nums1, nums2))
 
-	fmt.Println(intersect(nums1, nums2))
-}
-
-func intersect(nums1 []int, nums2 []int) []int {
-	result := []int{}
-
-	freq := make(map[int]int)
-	for _, num := range nums1 {
-		freq[num]++
-	}
-	for _, num := range nums2 {
-		if freq[num] > 0 {
-			result = append(result, num)
-			freq[num]--
-		}
-	}
-
-	return result
+	// ch := make(chan int)
+	// go send(ch)
+	// go receive(ch)
+	// time.Sleep(time.Second)
 
 }
+
+// func send(ch chan<- int) {
+//     ch <- 1
+// }
+
+// func receive(ch <-chan int) {
+//     val := <-ch
+//     fmt.Println(val)
+// }
+
+// func intersect(nums1 []int, nums2 []int) []int {
+// 	result := []int{}
+
+// 	freq := make(map[int]int)
+// 	for _, num := range nums1 {
+// 		freq[num]++
+// 	}
+// 	for _, num := range nums2 {
+// 		if freq[num] > 0 {
+// 			result = append(result, num)
+// 			freq[num]--
+// 		}
+// 	}
+
+// 	return result
+
+// }
 
 // func singleNumber(nums []int) int {
 // 	checker := make(map[int]int)
