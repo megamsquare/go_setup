@@ -1,10 +1,12 @@
 package server
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
 	"time"
 
 	config "github.com/megamsquare/go_setup/pkg/env_config"
@@ -53,6 +55,18 @@ func ListenAndServe(conf ServerConfig, handler http.Handler) {
 	}()
 
 	// Graceful Shutdown
-	
+	signals := make(chan os.Signal, 1)
+	signal.Notify(signals, os.Interrupt)
+
+	// Block until signal is received
+	<-signals
+
+	ctx, cancel := context.WithTimeout(context.Background(), conf.ShutdownTimeout)
+	defer cancel()
+	log.Println("Server is shutting down!!!")
+	err := srv.Shutdown(ctx)
+	if err != nil {
+		log.Printf("Server shutting down with error: %v\n", err)
+	}
 }
 
