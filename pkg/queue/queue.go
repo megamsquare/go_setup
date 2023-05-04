@@ -9,15 +9,15 @@ import (
 )
 
 type RabbitMQ struct {
-	conn *amqp.Connection
+	conn    *amqp.Connection
 	channel *amqp.Channel
 }
 
 type RabbitMQConfig struct {
 	Username string `config:"RABBITMQ_USER" default:"rabbitmq"`
 	Password string `config:"RABBITMQ_PASSWORD" default:"rabbitmq"`
-	Host string `config:"RABBITMQ_HOST" default:"rabbitmq"`
-	Port int `config:"RABBITMQ_PORT" default:"5672"`
+	Host     string `config:"RABBITMQ_HOST" default:"rabbitmq"`
+	Port     int    `config:"RABBITMQ_PORT" default:"5672"`
 }
 
 func Load_config() *RabbitMQConfig {
@@ -39,8 +39,8 @@ func Connect_rabbitMQ(conf *RabbitMQConfig) (*RabbitMQ, error) {
 		return nil, err
 	}
 
-	rabbitMQ := &RabbitMQ {
-		conn: conn,
+	rabbitMQ := &RabbitMQ{
+		conn:    conn,
 		channel: channel,
 	}
 

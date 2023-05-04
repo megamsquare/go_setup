@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	database "github.com/megamsquare/go_setup/pkg/db"
-	"github.com/megamsquare/go_setup/pkg/env_config"
+	config "github.com/megamsquare/go_setup/pkg/env_config"
 	"github.com/megamsquare/go_setup/pkg/queue"
 )
 

@@ -13,11 +13,11 @@ import (
 )
 
 type ServerConfig struct {
-	Address string `config:"HTTP_ADDRESS"`
-	Port    int    `config:"HTTP_PORT" default:"3000"`
-	ReadTimeout time.Duration `config:"HTTP_READ_TIMEOUT" default:"10s"`
-	WriteTimeout      time.Duration `config:"HTTP_WRITE_TIMEOUT" default:"120s"`
-	ShutdownTimeout   time.Duration `config:"HTTP_SHUTDOWN_TIMEOUT" default:"10s"`
+	Address         string        `config:"HTTP_ADDRESS"`
+	Port            int           `config:"HTTP_PORT" default:"3000"`
+	ReadTimeout     time.Duration `config:"HTTP_READ_TIMEOUT" default:"10s"`
+	WriteTimeout    time.Duration `config:"HTTP_WRITE_TIMEOUT" default:"120s"`
+	ShutdownTimeout time.Duration `config:"HTTP_SHUTDOWN_TIMEOUT" default:"10s"`
 }
 
 func Load_config() *ServerConfig {
@@ -39,7 +39,7 @@ func ListenAndServe(conf ServerConfig, handler http.Handler) {
 
 	srv := http.Server{
 		Addr:         address,
-		Handler: handler,
+		Handler:      handler,
 		ReadTimeout:  conf.ReadTimeout,
 		WriteTimeout: conf.WriteTimeout,
 	}
@@ -69,4 +69,3 @@ func ListenAndServe(conf ServerConfig, handler http.Handler) {
 		log.Printf("Server shutting down with error: %v\n", err)
 	}
 }
-
