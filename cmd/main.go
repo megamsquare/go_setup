@@ -1,15 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 
 	database "github.com/megamsquare/go_setup/pkg/db"
 	config "github.com/megamsquare/go_setup/pkg/env_config"
-	"github.com/megamsquare/go_setup/pkg/queue"
 	"github.com/megamsquare/go_setup/pkg/grpc"
-
+	"github.com/megamsquare/go_setup/pkg/queue"
 )
 
 func main() {
@@ -43,6 +40,6 @@ func main() {
 	// log.Fatal(http.ListenAndServe(":3000", nil))
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Starting Server")
-}
+// func handler(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Fprintf(w, "Starting Server")
+// }
